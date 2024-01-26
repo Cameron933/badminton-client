@@ -10,10 +10,15 @@ const Pairings: React.FC = () => {
       try {
         const serverUrl =
           import.meta.env.VITE_SERVER_URL || "http://localhost:3000";
-        const response = await axios.get(`${serverUrl}/api/rankings`);
-        setPairings(response.data);
+        const response = await axios.get(`${serverUrl}/pairings`);
+        if (Array.isArray(response.data)) {
+          setPairings(response.data);
+        } else {
+          console.error("Received data is not an array", response.data);
+          setPairings([]);
+        }
       } catch (error) {
-        console.error("Error fetching pairings", error);
+        console.error("Error fetching pairings data", error);
       }
     };
 

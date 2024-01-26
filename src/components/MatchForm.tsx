@@ -30,7 +30,7 @@ const MatchForm: React.FC = () => {
     try {
       const serverUrl =
         import.meta.env.VITE_SERVER_URL || "http://localhost:3000";
-      await axios.post(`${serverUrl}/api/rankings`, formData);
+      await axios.post(`${serverUrl}/matches`, formData);
       alert("Match results submitted successfully");
       setFormData({
         player1: "",
